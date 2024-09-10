@@ -8,19 +8,30 @@ using System.Windows.Forms;
 
 namespace Jätkäshakki
 {
-    internal class Peli
+    internal class Peli : Aloitus
     {
         public string merkki = "";
-        bool pelaajavuoro = true;
-        int ruudutTarkistus = 0;
-        int Yhteensa = 0;
-        public void Tarkistus(string[,] ruudut)
+        public bool pelaajavuoro = true;
+        bool pelaajaPisteet = false;
+
+        public void Tarkistus(int vaakaRivi, int pystyRivi, int ristiRivi)
         {
-            
+            if (vaakaRivi >= 5 || pystyRivi >= 5 || ristiRivi >= 5)
+            {
+                if (pelaajavuoro)
+                {
+                    MessageBox.Show("Pelaaja 2 voitti.");
+                    AloitusLaitto(pelaajavuoro);
+                }
+                else
+                {
+                    MessageBox.Show("Pelaaja 1 voitti.");
+                    AloitusLaitto(pelaajavuoro);
+                }
+            }
         }
         public string Vuorot()
         {
-            Kentta kentta = new Kentta();
             if (pelaajavuoro)
             {
                 merkki = "X";
